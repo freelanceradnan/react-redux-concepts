@@ -5,34 +5,20 @@ import './App.css'
 import Counter from './Components/Counter'
 import {InitialCounter} from './assets/database/InitialCounter'
 import Stats from './Components/Stats';
+import { useDispatch, useSelector } from 'react-redux'
+import { decrement, increment } from './Features/Counters/counterSlice'
+
 
 function App() {
-  const [counter,setCounter]=useState(InitialCounter)
+const counters=useSelector((state)=>state.counters)
+const dispatch=useDispatch()
 const handlerIncrement=(counterId)=>{
-  const updateCounter=counter.map(c=>{
-    if(c.id===counterId){
-      return{
-        ...c,
-        value:c.value+1
-      }
-    }
-    return c
-  })
-  setCounter(updateCounter)
+dispatch(increment(counterId))
 }
 const handlerDecrement=(counterId)=>{
-  const updateCounter=counter.map(c=>{
-    if(c.id===counterId){
-      return{
-        ...c,
-        value:c.value-1
-      }
-    }
-    return c
-  })
-  setCounter(updateCounter)
+ dispatch(decrement(counterId))
 }
-const totalvalue=counter.reduce((sum,curr)=>sum+curr.value,0)
+const totalvalue=counters.reduce((sum,curr)=>sum+curr.value,0)
   return (
    
   <div className="w-full h-screen bg-gray-100 p-10 text-slate-700">
@@ -40,7 +26,7 @@ const totalvalue=counter.reduce((sum,curr)=>sum+curr.value,0)
      <h2 className="max-w-md mx-auto text-center text-2xl font-bold">Simple Counter Application</h2>
     <div className="max-w-md mx-auto mt-10 space-y-5">
 
-{counter.map(count=>(
+{counters.map(count=>(
   <Counter key={count.id} counter={count} onIncrement={()=>handlerIncrement(count.id)} onDecrement={()=>handlerDecrement(count.id)}/>
   
   
