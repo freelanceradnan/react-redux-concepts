@@ -3,18 +3,51 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Counter from './Components/Counter'
+import {InitialCounter} from './assets/database/InitialCounter'
+import Stats from './Components/Stats';
 
 function App() {
-  
-
+  const [counter,setCounter]=useState(InitialCounter)
+const handlerIncrement=(counterId)=>{
+  const updateCounter=counter.map(c=>{
+    if(c.id===counterId){
+      return{
+        ...c,
+        value:c.value+1
+      }
+    }
+    return c
+  })
+  setCounter(updateCounter)
+}
+const handlerDecrement=(counterId)=>{
+  const updateCounter=counter.map(c=>{
+    if(c.id===counterId){
+      return{
+        ...c,
+        value:c.value-1
+      }
+    }
+    return c
+  })
+  setCounter(updateCounter)
+}
+const totalvalue=counter.reduce((sum,curr)=>sum+curr.value,0)
   return (
    
   <div className="w-full h-screen bg-gray-100 p-10 text-slate-700">
    <div>
      <h2 className="max-w-md mx-auto text-center text-2xl font-bold">Simple Counter Application</h2>
     <div className="max-w-md mx-auto mt-10 space-y-5">
-<Counter/>
+
+{counter.map(count=>(
+  <Counter key={count.id} counter={count} onIncrement={()=>handlerIncrement(count.id)} onDecrement={()=>handlerDecrement(count.id)}/>
+  
+  
+))}
+   <Stats totalvalue={totalvalue}/>
     </div>
+ 
    </div>
     </div>  
 

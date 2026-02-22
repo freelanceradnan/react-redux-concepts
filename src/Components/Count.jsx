@@ -3,7 +3,7 @@ import React from 'react';
 const Count = ({count}) => {
     return (
         <div className='text-2xl font-semibold'>
-            {count}
+            {count.value}
         </div>
     );
 };
