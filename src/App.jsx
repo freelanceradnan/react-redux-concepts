@@ -7,6 +7,7 @@ import {InitialCounter} from './assets/database/InitialCounter'
 import Stats from './Components/Stats';
 import { useDispatch, useSelector } from 'react-redux'
 import { decrement, increment } from './Features/Counters/counterSlice'
+import Posts from './Components/Posts'
 
 
 function App() {
@@ -32,6 +33,7 @@ const totalvalue=counters.reduce((sum,curr)=>sum+curr.value,0)
   
 ))}
    <Stats totalvalue={totalvalue}/>
+   <Posts/>
     </div>
  
    </div>
