@@ -8,11 +8,15 @@ export const apiSlice=createApi({
     baseQuery:fetchBaseQuery({
         baseUrl:"http://localhost:3000"
     }),
-    
+    //api call after other page going
+    refetchOnFocus:true,
+    //api call after 5 sec
+    // keepUnusedDataFor:5,
+    //
     endpoints: (builder) => ({
         getPosts: builder.query({
-            query: (limit) => `/posts`, 
-            keepUnusedDataFor:5,
+            query: (limit) => `/posts`,
+             
         }),
     }),
 })
