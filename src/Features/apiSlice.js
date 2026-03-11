@@ -9,10 +9,11 @@ export const apiSlice=createApi({
         baseUrl:"http://localhost:3000"
     }),
     //api call after other page going
-    refetchOnFocus:true,
+    // refetchOnFocus:true,
     //api call after 5 sec
     // keepUnusedDataFor:5,
-    //
+    //api call after reconnection
+    refetchOnReconnect:true,
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: (limit) => `/posts`,

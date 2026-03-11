@@ -21,5 +21,5 @@ export const store=configureStore({
     middleware:(getDefaultMiddlewares)=>getDefaultMiddlewares().concat(apiSlice.middleware),
     
 })
-//refetch on other focus/
+//refetch on other focus or reconnect
 setupListeners(store.dispatch)
