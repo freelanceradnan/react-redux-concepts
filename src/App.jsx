@@ -11,6 +11,7 @@ import Posts from './Components/Posts'
 
 
 function App() {
+   const [show,setShow]=useState(true)
 const counters=useSelector((state)=>state.counters)
 const dispatch=useDispatch()
 const handlerIncrement=(counterId)=>{
@@ -24,16 +25,17 @@ const totalvalue=counters.reduce((sum,curr)=>sum+curr.value,0)
    
   <div className="w-full h-screen bg-gray-100 p-10 text-slate-700">
    <div>
-     <h2 className="max-w-md mx-auto text-center text-2xl font-bold">Simple Counter Application</h2>
-    <div className="max-w-md mx-auto mt-10 space-y-5">
-
-{counters.map(count=>(
+     <h2 className="max-w-md mx-auto text-center text-2xl font-bold">Simple Posts Application</h2>
+    
+    <div className="max-w-md mx-auto mt-10 space-y-5 bg-slate-300 p-4">
+ <button onClick={()=>setShow(prev=>!prev)} className="border border-blue-400 p-2 bg-blue-500 text-white">Show Post</button>
+{/* {counters.map(count=>(
   <Counter key={count.id} counter={count} onIncrement={()=>handlerIncrement(count.id)} onDecrement={()=>handlerDecrement(count.id)}/>
   
   
 ))}
-   <Stats totalvalue={totalvalue}/>
-   <Posts/>
+   <Stats totalvalue={totalvalue}/> */}
+  {show &&  <Posts/>}
     </div>
  
    </div>

@@ -8,9 +8,11 @@ export const apiSlice=createApi({
     baseQuery:fetchBaseQuery({
         baseUrl:"http://localhost:3000"
     }),
+    
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: (limit) => `/posts`, 
+            keepUnusedDataFor:5,
         }),
     }),
 })
