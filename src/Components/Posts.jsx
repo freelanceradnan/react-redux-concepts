@@ -6,7 +6,9 @@ import { useGetPostsQuery } from '../Features/apiSlice';
 
 const Posts = () => {
  
-  const { data: posts, isLoading, isSuccess, isError, error } = useGetPostsQuery();
+  const { data: posts, isLoading, isSuccess, isError, error } = useGetPostsQuery(5,{
+    refetchOnMountOrArgChange:true //refetch on when change api or arguments
+  });
 
  
   if (isLoading) return <h1>Loading posts....</h1>;
