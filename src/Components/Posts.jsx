@@ -9,7 +9,7 @@ const Posts = () => {
   const { data: posts, isLoading, isSuccess, isError, error } = useGetPostsQuery(5,{
     // pollingInterval:5000//auto fetch data from api
     // refetchOnMountOrArgChange:true //refetch on when change api or arguments
-    skip:true   //skip auto fetch
+    // skip:false   //skip auto fetch
   });
 
  
@@ -23,7 +23,7 @@ const Posts = () => {
     return (
       <ul>
         {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>{post.title}{post.post}</li>
         ))}
       </ul>
     );
